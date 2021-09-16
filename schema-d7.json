@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "/Skeleton",
+  "type": "object",
+  "title": "Skeleton Schema",
+  "description": "Schema for validating a Skeleton JSON object",
+  "default": {},
+  "examples": [{
+    "name": "sample-skeleton",
+    "description": "A Sample Skeleton Template",
+    "author": "Pirate Pete (pete@ahoy.sh)",
+    "keywords": [
+      "nodejs",
+      "html",
+      "CSS"
+    ],
+    "copy": [
+      "**/*/copy/**"
+    ],
+    "ignore": [
+      "**/ignore/**"
+    ],
+    "questions": [{
+      "type": "text",
+      "name": "pirate_name",
+      "message": "Pirate Name",
+      "initial": "Blackbeard",
+      "required": true
+    }]
+  }],
+  "required": [
+    "name",
+    "description",
+    "author",
+    "keywords",
+    "questions"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The name schema",
+      "description": "The name of the project all lowercase, numbers, dashes, underscores, and no spaces",
+      "default": "",
+      "examples": [
+        "sample-skeleton"
+      ]
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The description schema",
+      "description": "A description of the skeleton and what it generates",
+      "default": "",
+      "examples": [
+        "A sample skeleton template description"
+      ]
+    },
+    "author": {
+      "$id": "#/properties/author",
+      "type": "string",
+      "title": "The author schema",
+      "description": "The name of the author",
+      "default": "",
+      "examples": [
+        "Pirate Pete (pete@ahoy.sh)"
+      ]
+    },
+    "repository": {
+      "$id": "#/properties/repository",
+      "type": "string",
+      "title": "The repository schema",
+      "description": "The repository URL",
+      "default": "",
+      "examples": [
+        "https://github.com/ahoysh/skeleton"
+      ]
+    },
+    "version": {
+      "$id": "#/properties/version",
+      "type": "string",
+      "title": "The version schema",
+      "description": "The name of the skeleton version",
+      "default": "",
+      "examples": [
+        "1.0"
+      ]
+    },
+    "license": {
+      "$id": "#/properties/license",
+      "type": "string",
+      "title": "The license schema",
+      "description": "The name of the license",
+      "enum": ["afl-3.0", "apache-2.0", "artistic-2.0", "bsl-1.0", "bsd-2-clause", "bsd-3-clause",
+        "bsd-3-clause-clear", "cc", "cc0-1.0", "cc-by-4.0", "cc-by-sa-4.0", "wtfpl", "ecl-2.0",
+        "epl-1.0", "epl-2.0", "eupl-1.1", "agpl-3.0", "gpl", "gpl-2.0", "gpl-3.0", "lgpl",
+        "lgpl-2.1", "lgpl-3.0", "isc", "lppl-1.3c", "ms-pl", "mit", "mpl-2.0", "osl-3.0",
+        "postgresql", "ofl-1.1", "ncsa", "unlicense", "zlib"
+      ],
+      "default": "bsd-3-clause",
+      "examples": [
+        "bsd-3-clause"
+      ]
+    },
+    "keywords": {
+      "$id": "#/properties/keywords",
+      "type": "array",
+      "title": "The keywords schema",
+      "description": "Simple keywords that describes the purpose of the skeleton",
+      "default": [],
+      "examples": [
+        [
+          "nodejs",
+          "html"
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/keywords/items",
+        "anyOf": [{
+          "$id": "#/properties/keywords/items/anyOf/0",
+          "type": "string",
+          "title": "The first anyOf schema",
+          "description": "Simple keyword that describes the purpose of the skeleton",
+          "default": "",
+          "examples": [
+            "nodejs",
+            "html"
+          ]
+        }]
+      }
+    },
+    "copy": {
+      "$id": "#/properties/copy",
+      "type": "array",
+      "title": "The copy schema",
+      "description": "File path patterns used to copy files into the generated output directory",
+      "default": [],
+      "examples": [
+        [
+          "**/*/copy/**"
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/copy/items",
+        "anyOf": [{
+          "$id": "#/properties/copy/items/anyOf/0",
+          "type": "string",
+          "title": "The first anyOf schema",
+          "description": "A file path pattern used to copy files into the generated output directory",
+          "default": "",
+          "examples": [
+            "**/*/copy/**"
+          ]
+        }]
+      }
+    },
+    "ignore": {
+      "$id": "#/properties/ignore",
+      "type": "array",
+      "title": "The ignore schema",
+      "description": "Array of file path patterns used to ignore files from being generated in the output directory",
+      "default": [],
+      "examples": [
+        [
+          "**/ignore/**"
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/ignore/items",
+        "anyOf": [{
+          "$id": "#/properties/ignore/items/anyOf/0",
+          "type": "string",
+          "title": "The first anyOf schema",
+          "description": "A file path pattern used to ignore files from being generated in the output directory",
+          "default": "",
+          "examples": [
+            "**/ignore/**"
+          ]
+        }]
+      }
+    },
+    "questions": {
+      "$id": "#/properties/questions",
+      "type": "array",
+      "title": "The questions schema",
+      "description": "Prompts the user to generate variables for rendering a skeleton template",
+      "default": [],
+      "examples": [
+        [{
+          "type": "text",
+          "name": "pirate_name",
+          "message": "Pirate Name",
+          "initial": "Blackbeard",
+          "required": true
+        }]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/questions/items",
+        "anyOf": [{
+          "$id": "#/properties/questions/items/anyOf/0",
+          "type": "object",
+          "title": "The first anyOf schema",
+          "description": "Prompts the user to generate a variable for rendering a skeleton template",
+          "default": {},
+          "examples": [{
+            "type": "text",
+            "name": "pirate_name",
+            "message": "Pirate Name",
+            "initial": "Blackbeard",
+            "required": true
+          }],
+          "required": [
+            "type",
+            "name",
+            "message"
+          ],
+          "properties": {
+            "type": {
+              "$id": "#/properties/questions/items/anyOf/0/properties/type",
+              "type": "string",
+              "title": "The type schema",
+              "enum": ["color", "date", "datetime-local", "email", "month", "number", "password",
+                "radio", "range", "select", "multi-select", "tel", "text", "time", "url", "week"
+              ],
+              "description": "The type of field this should be",
+              "default": "text",
+              "examples": [
+                "text",
+                "checkbox"
+              ]
+            },
+            "name": {
+              "$id": "#/properties/questions/items/anyOf/0/properties/name",
+              "type": "string",
+              "title": "The name schema",
+              "description": "The name of the field should be alphanumeric, dashes, underscores, and no spaces",
+              "default": "",
+              "examples": [
+                "text_field"
+              ]
+            },
+            "message": {
+              "$id": "#/properties/questions/items/anyOf/0/properties/message",
+              "type": "string",
+              "title": "The message schema",
+              "description": "A breif explanation of the field",
+              "default": "",
+              "examples": [
+                "Pirate Name"
+              ]
+            },
+            "initial": {
+              "$id": "#/properties/questions/items/anyOf/0/properties/initial",
+              "type": "string",
+              "title": "The initial schema",
+              "description": "An initial value for the field",
+              "default": "",
+              "examples": [
+                "Pirate Pete"
+              ]
+            },
+            "required": {
+              "$id": "#/properties/questions/items/anyOf/0/properties/required",
+              "type": "boolean",
+              "title": "The required schema",
+              "description": "Determines if the field is required or optional. Default is required",
+              "default": true,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        }]
+      }
+    }
+  },
+  "additionalProperties": true
+}

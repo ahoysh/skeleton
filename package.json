@@ -1,0 +1,44 @@
+{
+  "name": "skeleton",
+  "version": "1.0.0",
+  "description": "Skeleton templates",
+  "main": "skeleton.js",
+  "keywords": [
+    "skeleton",
+    "templates"
+  ],
+  "author": "Pirate Pete <pete@ahoy.sh>",
+  "license": "BSD",
+  "bin": {
+    "skeleton": "skeleton.js"
+  },
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahoysh/skeleton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ahoysh/skeleton/issues"
+  },
+  "homepage": "https://github.com/ahoysh/skeleton#readme",
+  "dependencies": {
+    "caporal": "^1.1.0",
+    "colors": "^1.3.3",
+    "download": "^8.0.0",
+    "generate-password": "^1.6.1",
+    "glob": "^7.1.2",
+    "istextorbinary": "^5.12.0",
+    "jsonschema": "^1.4.0",
+    "liquidjs": "^9.23.3",
+    "node-yaml": "^4.0.1",
+    "prompts": "^2.4.1",
+    "rc": "^1.2.8",
+    "rimraf": "^3.0.2",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "mocha": "^8.3.2"
+  }
+}
