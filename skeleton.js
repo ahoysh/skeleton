@@ -34,27 +34,34 @@ function ValidatePath(skelPath) {
  * Project Generator
  * @param {string} skelPath - path to the skeleton
  * @param {boolean} force - determines whether to force overwriting a file
+ * @param {boolean} verbose - a more informative output
  */
-async function GenerateProject(skelPath, force=false) {
+async function GenerateProject(skelPath, force=false, verbose=false) {
   let skelConfig;
   let skelConfigPath = path.join(path.resolve(skelPath), '.ahoy/skeleton');
   if (fs.existsSync(skelConfigPath + ".json") == true) {
+    if (verbose === true)
+      console.log(colors.cyan('CONFIG: '), "skeleton.json");
     try {
-    skelConfig = JSON.parse(fs.readFileSync(skelConfigPath + ".json", 'utf8'));
+      skelConfig = JSON.parse(fs.readFileSync(skelConfigPath + ".json", 'utf8'));
     } catch (error) {
       console.log(colors.red('Error loading skeleton configuration file'));
       return;
     }
   } else if (fs.existsSync(skelConfigPath + ".yml") == true) {
+    if (verbose === true)
+      console.log(colors.cyan('CONFIG: '), "skeleton.yml");
     skelConfig = readSync(skelConfigPath + ".yml");
   } else {
     console.log(colors.red('Skeleton config not found'));
     return;
   }
+  if (verbose === true)
+    console.log(colors.cyan('\nQuestion Prompt:'));
   let question = new Question(skelConfig);
   let context = await question.questionPromptSync();
   let skeleton = new Skeleton(path.resolve(skelPath), context);
-  await skeleton.generateSync(skelConfig.copy || [], skelConfig.ignore || [], force);
+  await skeleton.generateSync(skelConfig.copy || [], skelConfig.ignore || [], force, verbose);
 }
 
 
@@ -79,20 +86,20 @@ if (require.main === module) {
         if (repo.startsWith('http'))
           repo = 'direct:' + repo
         let fetchSkeleton = new FetchSkeleton()
-        let skelPath = await fetchSkeleton.download(repo)
-        await GenerateProject(skelPath)
+        let skelPath = await fetchSkeleton.download(repo, {}, opts.verbose)
+        await GenerateProject(skelPath, opts.force, opts.verbose)
         rm(skelPath)
       } else if (typeof args.name === 'undefined' && (opts.blank == true || opts.skeleton == true)) {
         // Builds a blank project or a blank skeleton template when either flag is provided.
         console.log(colors.yellow('Implement'));
       } else if (typeof args.name === 'undefined' && typeof opts.path !== 'undefined') {
         // Search for a local skeleton template from the provided path.
-        await GenerateProject(opts.path)
+        await GenerateProject(opts.path, opts.force, opts.verbose)
       } else {
-        console.log(colors.red('Skeleton build failed'));
+        console.log(colors.red('\nSkeleton build failed\n'));
         return;
       }
-      console.log(colors.green('Skeleton built successfully'));
+      console.log(colors.green('\nSkeleton built successfully\n'));
   });
 
   cmd.command('search')
