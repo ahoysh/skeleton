@@ -87,6 +87,10 @@ if (require.main === module) {
           repo = 'direct:' + repo
         let fetchSkeleton = new FetchSkeleton()
         let skelPath = await fetchSkeleton.download(repo, {}, opts.verbose)
+        if (skelPath == null) {
+          console.log(colors.red('\nSkeleton was not found\n'));
+          return
+        }
         await GenerateProject(skelPath, opts.force, opts.verbose)
         rm(skelPath)
       } else if (typeof args.name === 'undefined' && (opts.blank == true || opts.skeleton == true)) {
