@@ -2,6 +2,6 @@
   "author": "",
   "version": "1.0",
   "license": "bsd-3-clause",
-  "ignore": [],
+  "ignore": ["**/.ahoy/**"],
   "schema": "schema-d7"
 }
